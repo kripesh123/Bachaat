@@ -1,6 +1,6 @@
 package com.kat.bachaat.model;
 
-import java.util.Random;
+import java.util.Date;
 
 public class User {
     private Long userId;
@@ -10,13 +10,16 @@ public class User {
     private String email;
     private String address;
     private int activationCode;
-    private Long mobileNumber;
-    private boolean active = false;
+    private String mobileNumber;
+    private boolean active;
+    private Authority authority;
+    private Date createdDate;
+    private Date updatedDate;
 
     public User() {
     }
 
-    public User(Long userId, String firstName, String middleName, String lastName, String email, String address, int activationCode, Long mobileNumber, boolean active) {
+    public User(Long userId, String firstName, String middleName, String lastName, String email, String address, int activationCode, String mobileNumber, boolean active, Authority authority, Date createdDate, Date updatedDate) {
         this.userId = userId;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -26,6 +29,9 @@ public class User {
         this.activationCode = activationCode;
         this.mobileNumber = mobileNumber;
         this.active = active;
+        this.authority = authority;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
     }
 
     public Long getUserId() {
@@ -84,11 +90,11 @@ public class User {
         this.activationCode = activationCode;
     }
 
-    public Long getMobileNumber() {
+    public String getMobileNumber() {
         return mobileNumber;
     }
 
-    public void setMobileNumber(Long mobileNumber) {
+    public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 
@@ -100,17 +106,45 @@ public class User {
         this.active = active;
     }
 
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                " firstName='" + firstName + '\'' +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
                 ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", activationCode=" + activationCode +
-                ", mobileNumber=" + mobileNumber +
+                ", mobileNumber='" + mobileNumber + '\'' +
                 ", active=" + active +
+                ", authority=" + authority +
+                ", createdDate=" + createdDate +
+                ", updatedDate=" + updatedDate +
                 '}';
     }
 }
