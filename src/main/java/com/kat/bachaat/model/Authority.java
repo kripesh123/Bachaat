@@ -1,9 +1,15 @@
 package com.kat.bachaat.model;
 
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import java.util.List;
+
 public class Authority {
     private Long id;
-    private AuthorityName name;
-    private User user;
+    private String name;
+
+    @ManyToMany(mappedBy = "authorityList", fetch = FetchType.LAZY)
+    private List<User> userList;
 
     public Long getId() {
         return id;
@@ -13,19 +19,19 @@ public class Authority {
         this.id = id;
     }
 
-    public AuthorityName getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(AuthorityName name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public User getUser() {
-        return user;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 }

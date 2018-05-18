@@ -1,6 +1,11 @@
 package com.kat.bachaat.model;
 
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import java.util.Date;
+import java.util.List;
 
 public class User {
     private Long userId;
@@ -12,7 +17,12 @@ public class User {
     private int activationCode;
     private String mobileNumber;
     private boolean active;
-    private Authority authority;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "USER_AUTHORITY",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_id", referencedColumnName = "authority_id")})
+    private List<Authority> authorityList;
     private Date createdDate;
     private Date updatedDate;
 
@@ -29,7 +39,6 @@ public class User {
         this.activationCode = activationCode;
         this.mobileNumber = mobileNumber;
         this.active = active;
-        this.authority = authority;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
     }
@@ -106,12 +115,12 @@ public class User {
         this.active = active;
     }
 
-    public Authority getAuthority() {
-        return authority;
+    public List<Authority> getAuthorityList() {
+        return authorityList;
     }
 
-    public void setAuthority(Authority authority) {
-        this.authority = authority;
+    public void setAuthorityList(List<Authority> authorityList) {
+        this.authorityList = authorityList;
     }
 
     public Date getCreatedDate() {
@@ -142,7 +151,7 @@ public class User {
                 ", activationCode=" + activationCode +
                 ", mobileNumber='" + mobileNumber + '\'' +
                 ", active=" + active +
-                ", authority=" + authority +
+                ", authorityList=" + authorityList +
                 ", createdDate=" + createdDate +
                 ", updatedDate=" + updatedDate +
                 '}';
