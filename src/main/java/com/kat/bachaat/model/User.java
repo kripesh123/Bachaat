@@ -16,11 +16,12 @@ public class User {
     private List<Authority> authorityList;
     private Date createdDate;
     private Date updatedDate;
+    private String password;
 
     public User() {
     }
 
-    public User(Long userId, String firstName, String middleName, String lastName, String email, String address, int activationCode, String mobileNumber, boolean active, Authority authority, Date createdDate, Date updatedDate) {
+    public User(Long userId, String firstName, String middleName, String lastName, String email, String address, int activationCode, String mobileNumber, boolean active, Authority authority, Date createdDate, Date updatedDate, String password) {
         this.userId = userId;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -32,6 +33,7 @@ public class User {
         this.active = active;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
+        this.password = password;
     }
 
     public Long getUserId() {
@@ -130,6 +132,24 @@ public class User {
         this.updatedDate = updatedDate;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public User(String firstName, String middleName, String lastName, String email, String address, String mobileNumber, String password) {
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.mobileNumber = mobileNumber;
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -145,6 +165,7 @@ public class User {
                 ", authorityList=" + authorityList +
                 ", createdDate=" + createdDate +
                 ", updatedDate=" + updatedDate +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
